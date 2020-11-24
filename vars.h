@@ -17,12 +17,20 @@ enum tag {
 #define s3 (p + 3)
 #define s4 (p + 4)
 #define s5 (p + 5)
+#define s6 (p + 6)
+#define s7 (p + 7)
+#define s8 (p + 8)
+#define s9 (p + 9)
 
 #define a1 (p - 1)
 #define a2 (p - 2)
 #define a3 (p - 3)
 #define a4 (p - 4)
 #define a5 (p - 5)
+#define a6 (p - 6)
+#define a7 (p - 7)
+#define a8 (p - 8)
+#define a9 (p - 9)
 
 // Posição atual da iteração
 int p = 0;
