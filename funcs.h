@@ -39,11 +39,12 @@ int PREDET_EXACT_MULTI(int index, enum tag tags[]){
     return 1;
 }
 
-int INDEX(int index, int arg){
-    if(arg < 0){
-        return index == n_words + arg;
+// Verifica se palavra está em determinada posição
+int INDEX(int index, int pos){
+    if(pos < 0){
+        return index == n_words + pos;
     }
-    return index == arg;
+    return index == pos;
 }
 
 // Verifica se a palavra tem determinada pontuação
@@ -54,13 +55,14 @@ int PONT(int index, char punct){
     return w_puncts[index] == punct;
 }
 
+// Verifica se a palavra tem pelo menos algum das pontuações listadas
 int PONT_ANY(int index, char * puncts){
 
     if(!w_puncts[index]){
         return 0;
     }
 
-    for(int i = 0; puncts[i] != '\0'; i++){
+    for(int i = 0; !puncts[i]; i++){
         if(w_puncts[index] == puncts[i]){
             return 1;
         }
