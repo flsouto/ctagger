@@ -71,3 +71,13 @@ int PONT_ANY(int index, char * puncts){
     return 0;
 
 }
+
+// Verifica se a palavra é igual a outra
+int EQUALS(int index, wchar_t * str){
+    return wcscmp(w_strs[index], str) == 0;
+}
+
+// Verifica se a palavra é diferente de outra
+int DIFF(int index, wchar_t * str){
+    return !EQUALS(index, str);
+}

@@ -48,7 +48,7 @@ int w_lists[W_MAX][N_LISTS];
 char w_puncts[W_MAX];
 
 // Strings das palavras
-char * w_strs[W_MAX];
+wchar_t * w_strs[W_MAX];
 
 // Indica quais palavras já foram determinadas
 int w_determined[W_MAX];

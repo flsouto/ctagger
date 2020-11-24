@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <wchar.h>
+#include <locale.h>
 #include "vars.h"
 #include "funcs.h"
 #include "rules.h"
