@@ -62,7 +62,7 @@ int PONT_ANY(int index, char * puncts){
         return 0;
     }
 
-    for(int i = 0; !puncts[i]; i++){
+    for(int i = 0; puncts[i]; i++){
         if(w_puncts[index] == puncts[i]){
             return 1;
         }
