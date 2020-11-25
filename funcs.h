@@ -88,3 +88,5 @@ int DIFF(int index, wchar_t * str){
 // todo LISTA_SUB
 // todo NOP(from, to)
 // todo VERBEX
+// todo LIKE
+// todo LEN
