@@ -44,7 +44,7 @@ int INDEX(int index, int pos){
     if(pos < 0){
         return index == n_words + pos;
     }
-    return index == pos;
+    return index == pos-1;
 }
 
 // Verifica se a palavra tem determinada pontuação
