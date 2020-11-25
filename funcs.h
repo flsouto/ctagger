@@ -81,3 +81,10 @@ int EQUALS(int index, wchar_t * str){
 int DIFF(int index, wchar_t * str){
     return !EQUALS(index, str);
 }
+
+// todo EQUALS_VAR, DIFF_VAR, EQUALS_ANY, DIFF_ALL
+// todo LISTA_ANY
+// todo PREDET ALL
+// todo LISTA_SUB
+// todo NOP(from, to)
+// todo VERBEX
