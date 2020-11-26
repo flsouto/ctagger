@@ -114,6 +114,23 @@ int PONT_ANY(int index, char * puncts){
 
 }
 
+int ref2index(wchar_t * ref){
+
+    if(ref[0]=='p' && !ref[1]){
+        return p;
+    }
+    else if((ref[0] == L'a' || ref[0] == L's') && ref[1] >= L'0' && ref[1] <= L'9'){
+
+        if(ref[0] == L'a'){
+            return p - (ref[1] - L'0');
+        } else {
+            return p + (ref[1] - L'0');
+        }
+    }
+
+    return -1;
+}
+
 // Verifica se a palavra na posição X é igual a outra
 int EQUALS(int index, wchar_t * str){
 
@@ -122,9 +139,19 @@ int EQUALS(int index, wchar_t * str){
         return ABORT();
     }
 
-    // todo check if str is a1 - a9 / s1 - s9 and use VAR instead
+    int index2 = ref2index(str);
+    wchar_t * cmpwith;
 
-    return wcscasecmp(w_strs[index], str) == 0;
+    if(index2 != -1){
+        if(!EXISTS(index2)){
+            return ABORT();
+        }
+        cmpwith = w_strs[index2];
+    } else {
+        cmpwith = str;
+    }
+
+    return wcscasecmp(w_strs[index], cmpwith) == 0;
 }
 
 
