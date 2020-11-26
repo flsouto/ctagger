@@ -2,6 +2,41 @@
 #define PREDET(index, tag) ( EXISTS(index) && w_tags[index][tag] )
 #define LISTA(index, list) ( EXISTS(index) && w_lists[index][list] )
 
+void DET(enum tag tag, int rule){
+    if(!w_tags[p][tag]){
+        return;
+    }
+    for(int t=1; t<=N_TAGS; t++){
+        w_tags[p][t] = t == tag;
+    }
+    w_determined[p] = tag;
+    n_changes++;
+}
+
+void REM(enum tag tag, int rule){
+    if(!w_tags[p][tag]){
+        return;
+    }
+    w_tags[p][tag] = 0;
+    enum tag determined_as = 0;
+    for(int t=1; t<=N_TAGS; t++){
+        if(!w_tags[p][t]) {
+            continue;
+        }
+        if(!determined_as) {
+            determined_as = t;
+        } else {
+            determined_as = w_determined[p] = 0;
+            break;
+        }
+    }
+    if(determined_as){
+        w_determined[p] = determined_as;
+    }
+    n_changes++;
+}
+
+
 // Verifica se a palavra possui exatamente uma tag
 int PREDET_EXACT(int index, enum tag tag){
     if(!PREDET(index, tag)){

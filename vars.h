@@ -52,3 +52,6 @@ wchar_t * w_strs[W_MAX];
 
 // Indica quais palavras já foram determinadas
 int w_determined[W_MAX];
+
+// Indica o número de mudanças ocorridas durante a iteração
+int n_changes = 0;
