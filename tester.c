@@ -2,6 +2,7 @@
 #include <wchar.h>
 #include <locale.h>
 #include <assert.h>
+#include <setjmp.h>
 #include "vars.h"
 #include "funcs.h"
 #include "rules.h"

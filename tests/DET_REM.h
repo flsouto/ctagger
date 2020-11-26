@@ -6,7 +6,7 @@ void test(){
     w_tags[0][substantivo] = 1;
     w_tags[0][adverbio] = 1;
 
-    DET(adjetivo, 0);
+    DET(adjetivo);
 
     assert(w_determined[p] == adjetivo);
     assert(n_changes == 1);
@@ -18,12 +18,12 @@ void test(){
     w_tags[1][substantivo] = 1;
     w_tags[1][adverbio] = 1;
 
-    REM(adjetivo, 0);
+    REM(adjetivo);
 
     assert(!w_determined[p]);
     assert(n_changes == 2);
 
-    REM(substantivo, 0);
+    REM(substantivo);
 
     assert(w_determined[p] == adverbio);
 

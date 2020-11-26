@@ -2,7 +2,7 @@
 #define PREDET(index, tag) ( EXISTS(index) && w_tags[index][tag] )
 #define LISTA(index, list) ( EXISTS(index) && w_lists[index][list] )
 
-void DET(enum tag tag, int rule){
+void DET(enum tag tag){
     if(!w_tags[p][tag]){
         return;
     }
@@ -13,7 +13,7 @@ void DET(enum tag tag, int rule){
     n_changes++;
 }
 
-void REM(enum tag tag, int rule){
+void REM(enum tag tag){
     if(!w_tags[p][tag]){
         return;
     }
@@ -36,6 +36,13 @@ void REM(enum tag tag, int rule){
     n_changes++;
 }
 
+// Aborta regra sendo executada, ignorando todas as outras condiçõe
+int ABORT(){
+    if(running_rule){
+        longjmp(abort_rule, 1);
+    }
+    return 0;
+}
 
 // Verifica se a palavra possui exatamente uma tag
 int PREDET_EXACT(int index, enum tag tag){
@@ -107,17 +114,21 @@ int PONT_ANY(int index, char * puncts){
 
 }
 
-// Verifica se a palavra é igual a outra
+// Verifica se a palavra na posição X é igual a outra
 int EQUALS(int index, wchar_t * str){
-    return EXISTS(index) && wcscasecmp(w_strs[index], str) == 0;
+
+    // Impossível comparar com algo não existente
+    if(!EXISTS(index)){
+        return ABORT();
+    }
+
+    // todo check if str is a1 - a9 / s1 - s9 and use VAR instead
+
+    return wcscasecmp(w_strs[index], str) == 0;
 }
 
-// Verifica se a palavra é diferente de outra
-int DIFF(int index, wchar_t * str){
-    return !EQUALS(index, str);
-}
 
-// todo EQUALS_VAR, DIFF_VAR, EQUALS_ANY, DIFF_ALL
+// todo EQUALS_ANY
 // todo LISTA_ANY
 // todo PREDET ALL
 // todo LISTA_SUB

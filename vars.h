@@ -55,3 +55,9 @@ int w_determined[W_MAX];
 
 // Indica o número de mudanças ocorridas durante a iteração
 int n_changes = 0;
+
+// Indica qual a regra que está sendo executada no momento
+int running_rule = 0;
+
+// Utilizada para "pular fora" da regra caso alguma incompatibilidade ocorra em uma de suas condições
+static jmp_buf abort_rule;

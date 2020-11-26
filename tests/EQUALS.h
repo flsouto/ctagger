@@ -6,5 +6,4 @@ void test(){
 
     assert(EQUALS(p, L"çATã"));
     assert(EQUALS(s1, L"blah"));
-    assert(DIFF(s1, L"halb"));
 }
