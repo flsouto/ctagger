@@ -154,6 +154,8 @@ int EQUALS(int index, wchar_t * str){
     return wcscasecmp(w_strs[index], cmpwith) == 0;
 }
 
+// Verifica se a palavra atende um padrão de pesquisa
+// Formatos suportados: prefix*, *sufix, *middle*
 int LIKE(int index, wchar_t * pattern){
 
     if(!EXISTS(index)){
@@ -168,7 +170,7 @@ int LIKE(int index, wchar_t * pattern){
         return 0;
     }
 
-    // não começa com * (exemplo: anti*)
+    // PREFIX: não começa com * (exemplo: anti*)
     if(pattern[0] != L'*'){
 
         // Verifica se todos os chars até * são iguais ao da string
@@ -182,7 +184,7 @@ int LIKE(int index, wchar_t * pattern){
         }
         return 1;
     } else {
-        // começa e termina com * (ex.: *sc*)
+        // MIDDLE: começa e termina com * (ex.: *sc*)
         if(pattern[plen-1] == L'*'){
             // temos que verificar se, por exemplo, "sc" está dentro da string
             // desconsiderando primeiro e último caracteres
@@ -203,7 +205,7 @@ int LIKE(int index, wchar_t * pattern){
             }
             return 0;
         } else {
-            // Apenas começa com * (ex.: *ar)
+            // SUFIX: Apenas começa com * (ex.: *ar)
             for(int pi=1; pi < plen; pi++){
                 if(towlower(pattern[pi]) != towlower(w_strs[index][slen - (plen-pi)])){
                     return 0;
@@ -218,6 +220,26 @@ int LIKE(int index, wchar_t * pattern){
 
 }
 
+// Verifica se há pontuação entre duas posições,
+int NOP(int from, int to){
+    // Casos de invalidez
+    if(from > to || !EXISTS(from) || !EXISTS(to)){
+        return ABORT();
+    }
+    // Não tem como haver pontuação entre uma palavra e ela mesma
+    if(from == to){
+        return 1;
+    }
+    // Retorna falso na primeira pontuação encontrada
+    for(int i=from; i<to; i++){
+        if(w_puncts[i]){
+            return 0;
+        }
+    }
+    // Nenhuma pontuação encontrada
+    return 1;
+}
+
 
 // todo EQUALS_ANY
 // todo LISTA_ANY
@@ -225,5 +247,4 @@ int LIKE(int index, wchar_t * pattern){
 // todo LISTA_SUB
 // todo NOP(from, to)
 // todo VERBEX
-// todo LIKE
 // todo LEN
