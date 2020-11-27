@@ -267,6 +267,15 @@ int PREDET_SUB(int index, enum tag tag, int subs[]){
     }
 }
 
+int EQUALS_ANY(int index, wchar_t * strs[]){
+    for(int i=0; strs[i]; i++){
+        if(EQUALS(index, strs[i])){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 // todo EQUALS_ANY
 // todo LISTA_ANY
 // todo PREDET ALL
