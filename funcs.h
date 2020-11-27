@@ -244,7 +244,6 @@ int NOP(int from, int to){
 // todo EQUALS_ANY
 // todo LISTA_ANY
 // todo PREDET ALL
-// todo LISTA_SUB
-// todo NOP(from, to)
+// todo PREDET_SUB
 // todo VERBEX
 // todo LEN
