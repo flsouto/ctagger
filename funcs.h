@@ -240,6 +240,32 @@ int NOP(int from, int to){
     return 1;
 }
 
+// Verifica se a palavra possui tag com uma subclasse predeterminada ou lista
+// Exemplo na sintaxe conhecida do tagger: p PREDET substantivo[320,259]
+int PREDET_SUB(int index, enum tag tag, int subs[]){
+    if(!PREDET(index, tag)){
+        return 0;
+    }
+    // Quando a subclasse já foi determinada
+    if(w_subs[index]){
+        for(int i=0; subs[i]; i++){
+            // Algum tem que ser igual ao que já está determinado
+            if(w_subs[index] == subs[i]){
+                return 1;
+            }
+        }
+        return 0;
+    } else {
+    // Quando a subclasse ainda não foi determinada
+        for(int i=0; subs[i]; i++){
+            // Algum tem que ser igual ao que está numa das possíveis listas para esta palavra
+            if(w_lists[index][subs[i]]){
+                return 1;
+            }
+        }
+        return 0;
+    }
+}
 
 // todo EQUALS_ANY
 // todo LISTA_ANY

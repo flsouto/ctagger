@@ -44,6 +44,9 @@ int w_tags[W_MAX][N_TAGS];
 // Indica as listas em que cada palavra da frase está
 int w_lists[W_MAX][N_LISTS];
 
+// Indica a subclasse que foi determinada para cada palavra da frase
+int w_subs[W_MAX];
+
 // Indica se há ponto depois de cada palavra
 char w_puncts[W_MAX];
 
