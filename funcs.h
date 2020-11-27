@@ -154,6 +154,70 @@ int EQUALS(int index, wchar_t * str){
     return wcscasecmp(w_strs[index], cmpwith) == 0;
 }
 
+int LIKE(int index, wchar_t * pattern){
+
+    if(!EXISTS(index)){
+        return ABORT();
+    }
+
+    int plen = wcslen(pattern);
+    int slen = wcslen(w_strs[index]);
+
+    // A string precisa ser no mínimo do mesmo tamanho que o pattern
+    if(slen < plen){
+        return 0;
+    }
+
+    // não começa com * (exemplo: anti*)
+    if(pattern[0] != L'*'){
+
+        // Verifica se todos os chars até * são iguais ao da string
+        for(int i = 0; pattern[i] && pattern[i]!=L'*'; i++){
+            if(!w_strs[index][i]){
+                return 0;
+            }
+            if(towlower(pattern[i]) != towlower(w_strs[index][i])){
+                return 0;
+            }
+        }
+        return 1;
+    } else {
+        // começa e termina com * (ex.: *sc*)
+        if(pattern[plen-1] == L'*'){
+            // temos que verificar se, por exemplo, "sc" está dentro da string
+            // desconsiderando primeiro e último caracteres
+            for(int si = 1; si < slen - (plen - 2); si++){
+                if(towlower(pattern[1]) != towlower(w_strs[index][si])){
+                    continue;
+                }
+                int found = 1;
+                for(int pi = 2; pi <= plen-2; pi++){
+                    if(towlower(pattern[pi]) != towlower(w_strs[index][si+(pi-1)])){
+                        found = 0;
+                        break;
+                    }
+                }
+                if(found){
+                    return 1;
+                }
+            }
+            return 0;
+        } else {
+            // Apenas começa com * (ex.: *ar)
+            for(int pi=1; pi < plen; pi++){
+                if(towlower(pattern[pi]) != towlower(w_strs[index][slen - (plen-pi)])){
+                    return 0;
+                }
+            }
+            return 1;
+        }
+
+    }
+
+    return 0;
+
+}
+
 
 // todo EQUALS_ANY
 // todo LISTA_ANY
