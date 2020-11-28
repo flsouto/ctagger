@@ -285,6 +285,14 @@ int LISTA_ANY(int index, int lists[]){
     return 0;
 }
 
-// todo PREDET ALL
+int PREDET_ALL(int index, enum tag tags[]){
+    for(int i=0; tags[i]; i++){
+        if(!PREDET(index, tags[i])){
+            return 0;
+        }
+    }
+    return 1;
+}
+
 // todo VERBEX
 // todo LEN
