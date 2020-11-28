@@ -294,5 +294,12 @@ int PREDET_ALL(int index, enum tag tags[]){
     return 1;
 }
 
+int LEN(int index, int min, int max){
+    if(!EXISTS(index)){
+        return ABORT();
+    }
+    int len = wcslen(w_strs[index]);
+    return len >= min && len <= max;
+}
+
 // todo VERBEX
-// todo LEN
