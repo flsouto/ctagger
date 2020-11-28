@@ -276,9 +276,15 @@ int EQUALS_ANY(int index, wchar_t * strs[]){
     return 0;
 }
 
-// todo EQUALS_ANY
-// todo LISTA_ANY
+int LISTA_ANY(int index, int lists[]){
+    for(int i=0; lists[i]; i++){
+        if(LISTA(index, lists[i])){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 // todo PREDET ALL
-// todo PREDET_SUB
 // todo VERBEX
 // todo LEN
