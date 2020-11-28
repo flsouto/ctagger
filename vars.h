@@ -2,9 +2,15 @@ enum tag {
     artigo = 1,
     substantivo = 2,
     adjetivo = 3,
-    verbo = 4,
-    adverbio = 5,
-    pronome = 6,
+    adverbio = 4,
+    pronome = 5,
+    verbo = 6,
+    infinitivo = 7,
+    infinitivoPessoal = 8,
+    locucaoVerbal = 9,
+    gerundio = 10,
+    participio = 11,
+    verboTempoComposto = 12,
     tag_end
 };
 

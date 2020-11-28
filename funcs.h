@@ -1,6 +1,17 @@
 #define EXISTS(index) ( index > -1 && index < n_words )
 #define PREDET(index, tag) ( EXISTS(index) && w_tags[index][tag] )
 #define LISTA(index, list) ( EXISTS(index) && w_lists[index][list] )
+#define VERBEX(index) ( \
+    EXISTS(index) && (\
+        PREDET(index, verbo) \
+        || PREDET(index, infinitivo) \
+        || PREDET(index, infinitivoPessoal) \
+        || PREDET(index, locucaoVerbal) \
+        || PREDET(index, gerundio) \
+        || PREDET(index, participio) \
+        || PREDET(index, verboTempoComposto) \
+    ) \
+)
 
 void DET(enum tag tag){
     if(!w_tags[p][tag]){
@@ -301,5 +312,3 @@ int LEN(int index, int min, int max){
     int len = wcslen(w_strs[index]);
     return len >= min && len <= max;
 }
-
-// todo VERBEX
