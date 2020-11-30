@@ -6,7 +6,6 @@
 #include <setjmp.h>
 #include "vars.h"
 #include "funcs.h"
-#include "rules.h"
 #include "{TEST_FILE}"
 
 
