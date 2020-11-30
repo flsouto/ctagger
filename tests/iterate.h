@@ -47,7 +47,7 @@ int rule4(){
 }
 
 typedef int (*rule)();
-rule rules[] = {&rule1, &rule2, &rule3, &rule4, NULL};
+rule rules[] = {&rule1, &rule2, &rule3, &rule4};
 
 
 void test(){
@@ -77,29 +77,7 @@ void test(){
 
     w_puncts[3] = '.';
 
-    int changes;
-    int iter = 1;
-
-    do {
-        changes = 0;
-
-        for(p=0; p < n_words; p++){
-
-            // Pula palavras já determinadas
-            if(w_determined[p]){
-                continue;
-            }
-
-            // Percorre todas as regras
-            for(int r=0;rules[r];r++){
-                running_rule = r;
-                if(setjmp(abort_rule)) continue;
-                if(rules[r]()) changes++;
-            }
-        }
-        iter++;
-
-    } while(changes);
+    iterate(rules);
 
     assert(w_determined[0] == artigo);
     assert(w_determined[1] == adjetivo);

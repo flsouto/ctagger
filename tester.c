@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <setjmp.h>
 #include "vars.h"
+#include "utils.h"
 #include "funcs.h"
 #include "{TEST_FILE}"
 
