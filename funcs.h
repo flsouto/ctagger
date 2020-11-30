@@ -13,6 +13,7 @@
     ) \
 )
 
+// Deterina a palavra atual (p) com uma única tag
 void DET(enum tag tag){
     if(!w_tags[p][tag]){
         return;
@@ -24,6 +25,7 @@ void DET(enum tag tag){
     n_changes++;
 }
 
+// Remove uma tag da palavra atual (p) e verifica se ela ficou determina
 void REM(enum tag tag){
     if(!w_tags[p][tag]){
         return;
@@ -47,7 +49,7 @@ void REM(enum tag tag){
     n_changes++;
 }
 
-// Aborta regra sendo executada, ignorando todas as outras condiçõe
+// Aborta regra sendo executada, ignorando/pulando todas as outras condições
 int ABORT(){
     if(running_rule){
         longjmp(abort_rule, 1);
@@ -125,6 +127,8 @@ int PONT_ANY(int index, char * puncts){
 
 }
 
+// Converte uma referência (a1...a9, s1..s9) para a sua posição correspondente
+// Retorna -1 caso não for uma referência válida
 int ref2index(wchar_t * ref){
 
     if(ref[0]=='p' && !ref[1]){
@@ -278,6 +282,7 @@ int PREDET_SUB(int index, enum tag tag, int subs[]){
     }
 }
 
+// Verifica se a palavra é igual a qualquer uma de uma lista de strings
 int EQUALS_ANY(int index, wchar_t * strs[]){
     for(int i=0; strs[i]; i++){
         if(EQUALS(index, strs[i])){
@@ -287,6 +292,7 @@ int EQUALS_ANY(int index, wchar_t * strs[]){
     return 0;
 }
 
+// Verifica se a palavra está em alguma das listas
 int LISTA_ANY(int index, int lists[]){
     for(int i=0; lists[i]; i++){
         if(LISTA(index, lists[i])){
@@ -296,6 +302,7 @@ int LISTA_ANY(int index, int lists[]){
     return 0;
 }
 
+// Verifica se a palavra possui todas as tags
 int PREDET_ALL(int index, enum tag tags[]){
     for(int i=0; tags[i]; i++){
         if(!PREDET(index, tags[i])){
@@ -305,6 +312,7 @@ int PREDET_ALL(int index, enum tag tags[]){
     return 1;
 }
 
+// Verifica se o número de caracteres da palavra está dentro de um range
 int LEN(int index, int min, int max){
     if(!EXISTS(index)){
         return ABORT();
