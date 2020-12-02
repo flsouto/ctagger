@@ -22,7 +22,6 @@ int ref2index(wchar_t * ref){
 int iterate(int (*rules[10000])(void)){
 
     int changes;
-    int iterations = 1;
 
     do {
         changes = 0;

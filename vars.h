@@ -70,3 +70,6 @@ int running_rule = 0;
 
 // Utilizada para "pular fora" da regra caso alguma incompatibilidade ocorra em uma de suas condições
 static jmp_buf abort_rule;
+
+// Indica em qual iteração estamos no momento
+int iterations = 1;

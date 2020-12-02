@@ -49,6 +49,14 @@ int rule4(){
 typedef int (*rule)();
 rule rules[] = {&rule1, &rule2, &rule3, &rule4};
 
+void DET_logger_custom(int index, int tag){
+    printf("I%d W%d D%d\n", iterations, index, tag);
+}
+
+void REM_logger_custom(int index, int tag){
+    printf("I%d W%d R%d\n", iterations, index, tag);
+}
+
 
 void test(){
 
@@ -76,6 +84,9 @@ void test(){
     w_tags[3][artigo] = 1;
 
     w_puncts[3] = '.';
+
+    DET_logger = &DET_logger_custom;
+    REM_logger = &REM_logger_custom;
 
     iterate(rules);
 

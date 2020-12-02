@@ -13,6 +13,9 @@
     ) \
 )
 
+void (* DET_logger)(int index, int tag);
+void (* REM_logger)(int index, int tag);
+
 // Deterina a palavra atual (p) com uma única tag
 void DET(enum tag tag){
     if(!w_tags[p][tag]){
@@ -23,6 +26,9 @@ void DET(enum tag tag){
     }
     w_determined[p] = tag;
     n_changes++;
+    if(DET_logger){
+        DET_logger(p, tag);
+    }
 }
 
 // Remove uma tag da palavra atual (p) e verifica se ela ficou determina
@@ -43,8 +49,14 @@ void REM(enum tag tag){
             break;
         }
     }
+    if(REM_logger){
+        REM_logger(p, tag);
+    }
     if(determined_as){
         w_determined[p] = determined_as;
+        if(DET_logger){
+            DET_logger(p, determined_as);
+        }
     }
     n_changes++;
 }
