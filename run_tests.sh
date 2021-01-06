@@ -25,9 +25,9 @@ do
   code=`cat tester.c | sed -e "s@{TEST_FILE}@$f@g"`
   echo "$code" > tester_tmp.c
   if [ -z $output ]; then
-    gcc tester_tmp.c && ./a.out > tester_output
+    gcc tester_tmp.c -I. && ./a.out > tester_output
   else
-    gcc tester_tmp.c && ./a.out
+    gcc tester_tmp.c -I. && ./a.out
   fi
 done
 

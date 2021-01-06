@@ -1,3 +1,25 @@
+#define LID_MAS 268
+#define LID_FEM 254
+#define LID_SUB 277
+#define LID_ADJ 275
+#define LID_ADV 258
+#define LID_VER 698
+#define LID_INF 257
+#define LID_PRO 263
+#define LID_SIN 428
+#define LID_PLU 269
+
+#include <lists/a.h>
+
+int * getlists(wchar_t * word){
+    switch(word[0]){
+        case L'a' :
+            return getlists_a(word);
+        break;
+    }
+    return malloc(sizeof(int));
+}
+
 // Converte uma referência (a1...a9, s1..s9) para a sua posição correspondente
 // Retorna -1 caso não for uma referência válida
 int ref2index(wchar_t * ref){
