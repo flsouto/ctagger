@@ -11,10 +11,10 @@
 
 #include <lists/a.h>
 
-int * getlists(wchar_t * word){
+int * get_lists(wchar_t * word){
     switch(word[0]){
         case L'a' :
-            return getlists_a(word);
+            return get_lists_a(word);
         break;
     }
     return malloc(sizeof(int));

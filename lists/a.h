@@ -1,4 +1,4 @@
-int * getlists_a(wchar_t * word){
+int * get_lists_a(wchar_t * word){
     int * result;
     result = malloc(sizeof(int));
     switch(word[1]){
