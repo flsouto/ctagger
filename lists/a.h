@@ -9,9 +9,9 @@ int * get_lists_a(wchar_t * word){
                         case L'o' :
                             switch(word[4]){
                                 case '\0' :
+                                // Algo
                                     result = malloc(sizeof(int) * 2);
                                     result[0] = LID_PRO;
-                                    result[1] = LID_MAS;
                                     return result;
                                 break;
                             }
@@ -25,6 +25,7 @@ int * get_lists_a(wchar_t * word){
                                 case 'o' :
                                     switch(word[5]){
                                         case '\0' :
+                                        // Alugo
                                             result = malloc(sizeof(int) * 2);
                                             result[0] = LID_VER;
                                         break;

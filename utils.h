@@ -11,6 +11,9 @@
 
 #include <lists/a.h>
 
+// Retorna array de listas em que uma palavra está inserida
+// Último elemento será um int 0
+// Caso a palavra não esteja em nenhuma lista será retornado apenas um ponteiro para int 0
 int * get_lists(wchar_t * word){
     switch(word[0]){
         case L'a' :
@@ -18,6 +21,16 @@ int * get_lists(wchar_t * word){
         break;
     }
     return malloc(sizeof(int));
+}
+
+// Carrega listas de uma palavra pelo seu índice dentro da frase
+// Irá popular a variável w_lists[index] com as listas encontradas
+void w_load_lists(int index){
+    int * id = get_lists(w_strs[index]);
+    while(*id){
+        w_lists[index][*id] = 1;
+        id++;
+    }
 }
 
 // Converte uma referência (a1...a9, s1..s9) para a sua posição correspondente
