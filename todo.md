@@ -1,5 +1,3 @@
-Implement w_lists_load(index)
-Implement w_scan(w_index, text, text_pos)
 Implement w_split(index, a_tag, b_tag) -> w_lists_load
 Implement w_join(start, finish, as_tag)
 -----

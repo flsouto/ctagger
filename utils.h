@@ -9,15 +9,25 @@
 #define LID_SIN 428
 #define LID_PLU 269
 
+#define IS_PUNCT(c) ( c == '.' || c == ',' || c == ';' || c == '?' || c == '!' )
+
 #include <lists/a.h>
+#include <lists/c.h>
+#include <lists/m.h>
 
 // Retorna array de listas em que uma palavra está inserida
 // Último elemento será um int 0
 // Caso a palavra não esteja em nenhuma lista será retornado apenas um ponteiro para int 0
 int * get_lists(wchar_t * word){
-    switch(word[0]){
+    switch(towlower(word[0])){
         case L'a' :
             return get_lists_a(word);
+        break;
+        case L'c' :
+            return get_lists_c(word);
+        break;
+        case L'm' :
+            return get_lists_m(word);
         break;
     }
     return malloc(sizeof(int));
@@ -32,6 +42,33 @@ void w_load_lists(int index){
         id++;
     }
 }
+
+// Extrai uma palavra de um texto a partir de uma posição
+// Insere a palavra extraída em w_strs[w_index]
+// Popula w_puncts[w_index] caso houver alguma pontuação
+int w_scan(int w_index, wchar_t * text, int * pos){
+    int i = *pos;
+    // Descobre onde a palavra termina
+    for(;text[i]!='\0' && text[i]!=' '; i++);
+    // Nada foi percorrido, então é o fim da frase
+    if(i==*pos) return 0;
+    // Aloca espaço para o tamanho de chars percorrido
+    w_strs[w_index] = malloc(sizeof(wchar_t) * (i - *pos));
+    // Copia os chars para w_strs
+    int j = 0;
+    for(;*pos < i; (*pos)++, j++){
+        w_strs[w_index][j] = text[*pos];
+    }
+    // Caso o último char for uma pontuação
+    if(IS_PUNCT(w_strs[w_index][j-1])){
+        // Extrai a pontuação e trunca a palavra
+        w_puncts[w_index] = w_strs[w_index][j-1];
+        w_strs[w_index][j-1] = '\0';
+    }
+    return 1;
+}
+
+
 
 // Converte uma referência (a1...a9, s1..s9) para a sua posição correspondente
 // Retorna -1 caso não for uma referência válida
